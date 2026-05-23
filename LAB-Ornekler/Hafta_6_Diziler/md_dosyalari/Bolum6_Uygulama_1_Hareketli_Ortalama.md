@@ -22,7 +22,7 @@ int main() {
             }
         }
         filtreli[i] = toplam / sayac;
-        printf("Ham: %.2f → Filtreli: %.2f\n", sensor[i], filtreli[i]);
+        printf("Ham: %.1f → Filtreli: %.1f\n", sensor[i], filtreli[i]);
     }
     return 0;
 }

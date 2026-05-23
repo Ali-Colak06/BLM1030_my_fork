@@ -24,29 +24,32 @@ int main() {
         scanf(" %c", &cevap);
         
         if (cevap == 'h' || cevap == 'H') break;
+        else if (cevap == 'e' || cevap == 'E'){
         
-        int yeni_veri;
-        printf("Veri girin: ");
-        scanf("%d", &yeni_veri);
-        
-        // Eğer dizi dolduysa kapasiteyi artır
-        if (boyut >= kapasite) {
-            kapasite++; // Kapasiteyi birer birer artırıyoruz
+            int yeni_veri;
+            printf("Veri girin: ");
+            scanf("%d", &yeni_veri);
             
-            // realloc() kullanımı (Güvenli yöntem: geçici pointer ile)
-            int *temp = (int*) realloc(dizi, kapasite * sizeof(int));
-            
-            if (temp == NULL) {
-                printf("Kritik Hata: Bellek buyutulemedi!\n");
-                free(dizi);
-                return 1;
+            // Eğer dizi dolduysa kapasiteyi artır
+            if (boyut >= kapasite) {
+                kapasite++; // Kapasiteyi birer birer artırıyoruz
+                
+                // realloc() kullanımı (Güvenli yöntem: geçici pointer ile)
+                int *temp = (int*) realloc(dizi, kapasite * sizeof(int));
+                
+                if (temp == NULL) {
+                    printf("Kritik Hata: Bellek buyutulemedi!\n");
+                    free(dizi);
+                    return 1;
+                }
+                dizi = temp;
+                printf(">> Bellek genisletildi (Yeni Kapasite: %d)\n", kapasite);
             }
-            dizi = temp;
-            printf(">> Bellek genisletildi (Yeni Kapasite: %d)\n", kapasite);
+            
+            dizi[boyut] = yeni_veri;
+            boyut++;
         }
-        
-        dizi[boyut] = yeni_veri;
-        boyut++;
+        else printf("Yanlis cevap");
     }
     
     printf("\nKaydedilen Veriler (%d adet):\n", boyut);
